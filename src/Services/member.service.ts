@@ -28,5 +28,9 @@ constructor(private http:HttpClient) {
   {
     return this.http.get<Member>(`http://localhost:3000/members/${id}`)
   }
+  updateMember(id:string,member:Member):Observable<void>
+  {
+    return this.http.put<void>(`http://localhost:3000/members/${id}`,member)
+  }
 
 }

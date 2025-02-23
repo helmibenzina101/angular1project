@@ -32,7 +32,7 @@ ngOnInit(){
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
   this.form = new FormGroup({
-    id: new FormControl(null),
+  
     cin: new FormControl(null),
     name: new FormControl(null),
     type: new FormControl(null),
@@ -40,8 +40,14 @@ ngOnInit(){
   }) };
 }
 sub() {
+  const idcourant=this.activatedRoute.snapshot.params['id']
+  if(idcourant){
+    this.MS.updateMember(idcourant,this.form.value).subscribe();
+    this.router.navigate(['']) /////
+  }
+  else{   
   console.log(this.form.value);
   this.MS.addMember(this.form.value).subscribe();
   this.router.navigate(['']) /////
   }
-}
+}}
